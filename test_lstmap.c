@@ -1,18 +1,16 @@
 #include "libft.h"
 #include "stdio.h"
 
-void	*ft_map(void *ct)
+void	*ft_map(void *c)
 {
 	int i;
-	void	*c;
-	char	*pouet;
+	char	*tmp;
 
-	c = ct;
 	i = -1;
-	pouet = (char *)c;
-	while (pouet[++i])
-		if (pouet[i] == 'o')
-			pouet[i] = 'a';
+	tmp = (char *)c;
+	while (tmp[++i])
+		if (tmp[i] == 'o')
+			tmp[i] = 'a';
 	return (c);
 }
 
@@ -23,15 +21,15 @@ void	ft_del(void *content)
 
 int main()
 {
-	t_list	*node1 = ft_lstnew("one");
-	t_list	*node2 = ft_lstnew("two");
-	t_list	*node3 = ft_lstnew("three");
+	t_list	*node1 = ft_lstnew(ft_strdup("one"));
+	t_list	*node2 = ft_lstnew(ft_strdup("two"));
+	t_list	*node3 = ft_lstnew(ft_strdup("three"));
 	ft_lstadd_back(&node1, node2);
 	ft_lstadd_back(&node1, node3);
 	t_list	*new = ft_lstmap(node1, &ft_map, &ft_del);
 	while (new)
 	{
-		printf("%s", (char *)new->content);
+		printf("%s ", (char *)new->content);
 		new = new->next;
 	}
 	return (0);
